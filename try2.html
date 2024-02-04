@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .container {
+    margin-top: 100px;
+  }
+  .btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  #yesBtn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  #noBtn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  #gifContainer {
+    margin-top: 20px;
+  }
+  #gif {
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="question">Will You Be My Valentine?</h1>
+    <div id="phrases">
+      <button id="yesBtn" class="btn">Yes</button>
+      <button id="noBtn" class="btn">No</button>
+    </div>
+    <div id="gifContainer">
+      <div id="gif">
+        <img src="https://media.giphy.com/media/l4FGmKmMznZHHINUI/giphy.gif" alt="Valentine's GIF">
+      </div>
+    </div>
+    <audio id="song" src="C:\Users\saif\Desktop\trty\Mohamed Mounir - Hawadit محمد منير - حواديت.mp3"auto"></audio>
+  </div>
+
+  <script>
+    const phrases = [
+      "Maybe next time?",
+      "Please say yes!",
+      "I'll wait for you!",
+      "You sure you don't want to?",
+      "Don't break my heart!",
+      "Think again!",
+      "Take a chance!",
+    ];
+
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const gifDiv = document.getElementById('gif');
+    const song = document.getElementById('song');
+    const question = document.getElementById('question');
+
+    let currentPhraseIndex = 0;
+
+    yesBtn.addEventListener('click', function() {
+      gifDiv.style.display = 'block';
+      song.play();
+    });
+
+    noBtn.addEventListener('click', function() {
+      question.textContent = phrases[currentPhraseIndex];
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+    });
+  </script>
+</body>
+</html>
