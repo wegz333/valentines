@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden; /* Prevent scrolling during animation */
+  }
+  .container {
+    margin-top: 100px;
+  }
+  .btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  #yesBtn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  #noBtn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  #gifContainer {
+    margin-top: 20px;
+  }
+  #gif {
+    display: none;
+  }
+  .heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    transform: rotate(45deg);
+    animation: fall 5s infinite linear;
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(-100vh) rotate(45deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(100vh) rotate(45deg);
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="question">Will You Be My Valentine?</h1>
+    <div id="phrases">
+      <button id="yesBtn" class="btn">Yes</button>
+      <button id="noBtn" class="btn">No</button>
+    </div>
+    <div id="gifContainer">
+      <div id="gif">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTlwam1zbW52aHVjbGpyd202NGJlN3BlcG44aXd6OGRhZ2l6ZzUzbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jom9MOGzvIpNmAuu0y/giphy.gif">
+      </div>
+    </div>
+    <audio id="song" src="https://od.lk/s/NDBfNzk4MzU2MjBf/%D9%85%D8%AD%D9%85%D8%AF%20%D9%85%D9%86%D9%8A%D8%B1%20_%20%D8%AD%D9%88%D8%A7%D8%AF%D9%8A%D8%AA%20_%20%D8%AC%D9%88%D8%AF%D9%87%20%D8%B9%D8%A7%D9%84%D9%8A%D9%87%20HD-Trimmed%20by%20FlexClip.mp3" preload="auto"></audio>
+  </div>
+
+  <script>
+    const phrases = [
+      "Maybe next time?",
+      "Please say yes!",
+      "I'll wait for you!",
+      "You sure you don't want to?",
+      "Don't break my heart!",
+      "Think again!",
+      "Take a chance!",
+    ];
+
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const gifDiv = document.getElementById('gif');
+    const question = document.getElementById('question');
+    const song = document.getElementById('song');
+
+    let currentPhraseIndex = 0;
+
+    yesBtn.addEventListener('click', function() {
+      gifDiv.style.display = 'block';
+      song.play();
+      question.textContent = "There was no other choice hahaha!";
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          document.body.appendChild(createHeart());
+        }, Math.random() * 2000);
+      }
+    });
+
+    noBtn.addEventListener('click', function() {
+      question.textContent = phrases[currentPhraseIndex];
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      gifDiv.style.display = 'none';
+    });
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      return heart;
+    }
+  </script>
+</body>
+</html>
